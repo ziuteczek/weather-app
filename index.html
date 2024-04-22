@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>weather-app</title>
+    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="shortcut icon" href="./img/log.svg" type="image/x-icon" />
+
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <!---->
+  </head>
+  <body>
+    <div class="wrapper">
+      <nav>
+        <img src="./img/log.svg" class="logo" alt="webside logo" />
+        <h1>
+          <span class="logo-front">OLO</span><span class="logo-back">cast</span
+          ><button class="unit-btn">&deg;C</button>
+        </h1>
+        <div class="search-box">
+          <input class="search-input" type="search" />
+          <div class="search-option-box"></div>
+        </div>
+        <button class="find-weather">
+          <img src="./img/send.svg" alt="serach button image" />
+        </button>
+      </nav>
+      <header>
+        <div class="info">
+          <p class="location">Warszawa</p>
+          <p class="date"><span class="b">Wtorek</span>, 13 Stycznia</p>
+          <div class="conditions">
+            <div class="wind-speed"></div>
+            <div class="pressure"></div>
+            <div class="feelslike"></div>
+            <div class="temp"></div>
+          </div>
+        </div>
+        <div class="card-header"><img class="weather-img"></div>
+      </header>
+      <main>
+        <div class="day"></div>
+      </main>
+    </div>
+    <script src="./js/main.js"></script>
+    <script src="./js/api-weather.js"></script>
+    <script src="./js/unit.js"></script>
+  </body>
+</html>
