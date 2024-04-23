@@ -37,6 +37,8 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #fff;
 }
+:focus {
+}
 .wrapper {
   max-width: 1200px;
   margin-left: auto;
@@ -116,8 +118,12 @@ header {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  .b {
+  .week-day {
+    text-transform: capitalize;
     font-weight: 600;
+  }
+  .day-month {
+    text-transform: capitalize;
   }
   .date {
     margin-bottom: 20px;

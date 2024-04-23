@@ -125,8 +125,12 @@ header {
   justify-content: space-around;
   align-items: center;
 }
-header .b {
+header .week-day {
+  text-transform: capitalize;
   font-weight: 600;
+}
+header .day-month {
+  text-transform: capitalize;
 }
 header .date {
   margin-bottom: 20px;

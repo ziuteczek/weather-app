@@ -1,5 +1,5 @@
 let Location;
-async function get_weather(type, location, language = "PL") {
+export default async function get_weather(type, location, language = "PL") {
   const api_data = await fetch(
     `https://api.weatherapi.com/v1/${type}.json?q=${location}&lang=${language}}`,
     {
@@ -54,5 +54,4 @@ findWeatherBtn.addEventListener("click", async function () {
   const weatherObj = await get_weather("current", searchEl.value);
   searchEl.value = "";
   weatherImgEl.src = weatherObj.current.condition.icon;
-
 });

@@ -35,22 +35,25 @@
       <header>
         <div class="info">
           <p class="location">Warszawa</p>
-          <p class="date"><span class="b">Wtorek</span>, 13 Stycznia</p>
+          <p class="date">
+            <span class="week-day"></span>,&nbsp;<span class="day-month"></span>
+          </p>
           <div class="conditions">
-            <div class="wind-speed"></div>
-            <div class="pressure"></div>
-            <div class="feelslike"></div>
-            <div class="temp"></div>
+            <div class="weather-condition wind-speed"></div>
+            <div class="weather-condition pressure"></div>
+            <div class="weather-condition feelslike"></div>
+            <div class="weather-condition temp"></div>
           </div>
         </div>
-        <div class="card-header"><img class="weather-img"></div>
+        <div class="card-header"><img class="weather-img" /></div>
       </header>
       <main>
         <div class="day"></div>
       </main>
     </div>
-    <script src="./js/main.js"></script>
-    <script src="./js/api-weather.js"></script>
-    <script src="./js/unit.js"></script>
+    <script type="module" src="./js/main.js"></script>
+    <script type="module" src="./js/api-weather.js"></script>
+    <script type="module" src="./js/unit.js"></script>
+    <script type="module" src="./js/get-location.js"></script>
   </body>
 </html>
