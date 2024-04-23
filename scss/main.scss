@@ -37,8 +37,6 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: #fff;
 }
-:focus {
-}
 .wrapper {
   max-width: 1200px;
   margin-left: auto;
@@ -110,14 +108,30 @@ nav {
   }
 }
 header {
-  margin-top: 50px;
+  z-index: -1;
+  position: relative;
+  overflow: hidden;
+  margin-top: 30px;
   background-color: #a4508b;
   background-image: linear-gradient(326deg, #61224e 0%, #5f0a87 74%);
+  background-image: url("../img/bg.jpg");
+  background-position-y: 90%;
   border-radius: 25px;
   min-height: 400px;
   display: flex;
   justify-content: space-around;
   align-items: center;
+  .sh {
+    // background-color: #000;
+    background-size: cover;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+  .rain-bg {
+    opacity: 30%;
+    background-image: url("https://media2.giphy.com/media/Wmp1EOzVybWd13s5DB/giphy.gif?cid=6c09b952rpgzo51slmyo69c61l1u9qt7rl9m20q9xl1wmpv0&ep=v1_gifs_search&rid=giphy.gif&ct=s");
+  }
   .week-day {
     text-transform: capitalize;
     font-weight: 600;
@@ -145,5 +159,32 @@ header {
     opacity: 80%;
     background-image: linear-gradient(326deg, white, rgb(219, 217, 217));
     grid-template-areas: "wind-speed pressure" "feelslike temp";
+  }
+  .weather-condition {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    grid-template-rows: 1fr;
+    justify-content: space-around;
+    align-items: center;
+    color: rgb(29, 29, 29);
+    p {
+      text-align: center;
+      font-weight: bold;
+      font-size: 2.5rem;
+      grid-column: 2;
+    }
+    .icon {
+      grid-column: 1;
+      height: 50px;
+      margin-left: 15px;
+      padding: 7px;
+      border-radius: 3px;
+      background-color: #a4508b;
+      background-image: linear-gradient(326deg, #61224e 0%, #5f0a87 74%);
+      transition: 0.3s scale;
+      &:hover {
+        scale: 1.2;
+      }
+    }
   }
 }

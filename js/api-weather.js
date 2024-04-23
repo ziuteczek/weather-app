@@ -1,4 +1,3 @@
-let Location;
 export default async function get_weather(type, location, language = "PL") {
   const api_data = await fetch(
     `https://api.weatherapi.com/v1/${type}.json?q=${location}&lang=${language}}`,
@@ -23,10 +22,14 @@ async function typying_options(text_typed) {
 const searchEl = document.querySelector(".search-input");
 const searchBoxEls = document.querySelector(".search-option-box");
 
-searchEl.addEventListener("input", async function (e) {
+async function typingHint(e) {
   const hints = await typying_options(e.target.value);
   searchBoxEls.innerHTML = "";
   if (!hints.length || !hints) {
+    return;
+  }
+  if (searchEl.textContent) {
+    searchBoxEls.innerHTML = ""
     return;
   }
   hints.slice(0, 3).forEach((location) => {
@@ -40,18 +43,11 @@ searchEl.addEventListener("input", async function (e) {
   hintsEls.forEach((option) => {
     option.addEventListener("click", (e) => {
       searchEl.value = e.target.textContent;
+      console.log(e.target.textContent)
       searchBoxEls.innerHTML = "";
     });
   });
-});
+}
 
-const findWeatherBtn = document.querySelector(".find-weather");
-const weatherImgEl = document.querySelector(".weather-img");
-
-const conditionsEl = document.querySelector(".conditions");
-
-findWeatherBtn.addEventListener("click", async function () {
-  const weatherObj = await get_weather("current", searchEl.value);
-  searchEl.value = "";
-  weatherImgEl.src = weatherObj.current.condition.icon;
-});
+searchEl.addEventListener("input", typingHint);
+document.body.addEventListener("click", () => searchBoxEls.innerHTML = "")
