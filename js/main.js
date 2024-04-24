@@ -1,5 +1,6 @@
-import get_weather from "./api-weather.js";
+import * as apiWeather from './api-weather.js'
 import getGEOlocation from "./get-location.js"
+
 
 const weekDayEl = document.querySelector(".week-day");
 const dayMonthEl = document.querySelector(".day-month");
@@ -36,7 +37,7 @@ export async function setWeather(weatherObj) {
   weatherConditionsEls.cloudy.textContent = `${weatherObj.current.cloud}`;
   if (weatherObj.current.precip_mm) {
     headerOverlay.classList.add("rain-bg");
-    headerOverlay.style.opacity = `${weatherObj.current.precip_mm / 0.9}`;
+    headerOverlay.style.opacity = `${weatherObj.current.precip_mm / 0.8}`;
   } else {
     headerOverlay.classList.remove("rain-bg");
     headerOverlay.style.opacity = "1"
@@ -45,14 +46,46 @@ export async function setWeather(weatherObj) {
   console.log(weatherObj);
 }
 const findWeatherBtn = document.querySelector(".find-weather");
-const weatherImgEl = document.querySelector(".weather-img");
 
 const searchInput = document.querySelector(".search-input");
-const conditionsEl = document.querySelector(".conditions");
 
 findWeatherBtn.addEventListener("click", () => {
   const location = searchInput.value;
   searchInput.value = "";
-  setWeather(get_weather("current", location));
+  setWeather(apiWeather.get_weather("current", location));
 });
-setWeather(get_weather("current",await getGEOlocation()))
+setWeather(apiWeather.get_weather("current",await getGEOlocation()))
+
+const searchEl = document.querySelector(".search-input");
+const searchBoxEls = document.querySelector(".search-option-box");
+
+
+async function typingHint(e) {
+  const hints = await apiWeather.get_typying_options(e.target.value);
+  searchBoxEls.innerHTML = "";
+  if (!hints.length || !hints) {
+    return;
+  }
+  if (searchEl.textContent) {
+    searchBoxEls.innerHTML = ""
+    return;
+  }
+  hints.slice(0, 3).forEach((location) => {
+    console.log(location);
+    searchBoxEls.insertAdjacentHTML(
+      "beforeend",
+      `<button class="search-option">${location}</button>`
+    );
+  });
+  const hintsEls = document.querySelectorAll(".search-option");
+  hintsEls.forEach((option) => {
+    option.addEventListener("click", (e) => {
+      searchEl.value = e.target.textContent;
+      console.log(e.target.textContent)
+      searchBoxEls.innerHTML = "";
+    });
+  });
+}
+
+searchEl.addEventListener("input", typingHint);
+document.body.addEventListener("click", () => searchBoxEls.innerHTML = "")
