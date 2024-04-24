@@ -1,4 +1,5 @@
 import get_weather from "./api-weather.js";
+import getGEOlocation from "./get-location.js"
 
 const weekDayEl = document.querySelector(".week-day");
 const dayMonthEl = document.querySelector(".day-month");
@@ -54,3 +55,4 @@ findWeatherBtn.addEventListener("click", () => {
   searchInput.value = "";
   setWeather(get_weather("current", location));
 });
+setWeather(get_weather("current",await getGEOlocation()))
