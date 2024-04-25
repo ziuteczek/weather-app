@@ -194,4 +194,42 @@ header .weather-condition .icon {
 }
 header .weather-condition .icon:hover {
   scale: 1.2;
+}
+
+main .card {
+  display: flex;
+  flex-direction: column;
+  background-color: #c3cbdc;
+  align-items: center;
+  background-image: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+  border-radius: 20px;
+  width: 200px;
+}
+main .card__time {
+  text-align: center;
+  font-size: 1.8rem;
+  background-color: #6e1da3;
+  padding: 0.25em 1em;
+  border-radius: 20px;
+  color: white;
+  width: -moz-min-content;
+  width: min-content;
+}
+main .card__temperature {
+  text-align: center;
+  color: #6e1da3;
+  font-size: 3rem;
+}
+main .card__conditions {
+  font-size: 1.5rem;
+}
+main .card__wind-speed::before {
+  content: "";
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-image: url("../img/weather-icon/wind.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }/*# sourceMappingURL=main.css.map */

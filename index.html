@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>weather-app</title>
-    <link rel="stylesheet" href="./css/main.css" />
+    <link rel="stylesheet" href="./scss/main.css" />
     <link rel="shortcut icon" href="./img/log.svg" type="image/x-icon" />
 
     <!-- Google fonts -->
@@ -61,7 +61,15 @@
         <div class="card-header"><img class="weather-img" /></div>
       </header>
       <main>
-        <div class="day"></div>
+        <div class="cards-container">
+        <div class="card">
+          <img src="https://cdn2.iconfinder.com/data/icons/weather-365/64/weather-sun-cloud-rain-512.png" class="card__icon"></img>
+          <div class="card__time">14:00</div>
+          <div class="card__temperature">15&deg;C</div>
+          <div class="card__conditions"><span class="card__wind-speed">45km/h</span><span class="card__rain-chance">50%</span></div>
+          <div class="card__description">Slonecznie</div>
+        </div>
+        </div>
       </main>
     </div>
     <script type="module" src="./js/main.js"></script>
