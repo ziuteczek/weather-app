@@ -1,6 +1,5 @@
-import * as apiWeather from './api-weather.js'
-import getGEOlocation from "./get-location.js"
-
+import * as apiWeather from "./api-weather.js";
+import getGEOlocation from "./get-location.js";
 
 const weekDayEl = document.querySelector(".week-day");
 const dayMonthEl = document.querySelector(".day-month");
@@ -24,26 +23,91 @@ const weatherConditionsEls = {
   pressure: document.querySelector(".pressure"),
   cloudy: document.querySelector(".cloudy"),
   temp: document.querySelector(".temp"),
+  weatherImg: document.querySelector(".weather-img"),
+  tempBox: document.querySelector(".temp-card"),
 };
 
 export async function setWeather(weatherObj) {
   weatherObj = await weatherObj;
   location.textContent = weatherObj.location.name;
-  weatherConditionsEls.windSpeed.textContent = `${Math.round(
-    weatherObj.current.wind_kph
-  )}`;
-  weatherConditionsEls.pressure.textContent = `${weatherObj.current.pressure_mb}`;
-  weatherConditionsEls.temp.textContent = `${weatherObj.current.temp_c}`;
-  weatherConditionsEls.cloudy.textContent = `${weatherObj.current.cloud}`;
-  if (weatherObj.current.precip_mm) {
-    headerOverlay.classList.add("rain-bg");
-    headerOverlay.style.opacity = `${weatherObj.current.precip_mm / 0.8}`;
-  } else {
-    headerOverlay.classList.remove("rain-bg");
-    headerOverlay.style.opacity = "1"
-  }
+  setCurrentWeather(weatherObj.current);
+  setForecastWeather(weatherObj.forecast);
+
   console.log(weatherConditionsEls);
   console.log(weatherObj);
+}
+const cardsContainer = document.querySelector(".cards-container");
+const createCards = (forecastWeatherObj) =>
+  forecastWeatherObj.forecastday.map((d) => {
+    const date = new Date(d.date);
+
+    const card = document.createElement("div");
+    card.classList.add("card");
+
+    const weatherIcon = document.createElement("img");
+    weatherIcon.src = d.day.condition.icon;
+    weatherIcon.classList.add("card__icon");
+
+    const weatherTime = document.createElement("p");
+    weatherTime.classList.add("card__time");
+    weatherTime.textContent = date.toLocaleDateString("pl-PL", {
+      day: "numeric",
+      month: "long",
+    });
+
+    const weatherTemperature = document.createElement("p");
+    weatherTemperature.classList.add("card__temperature");
+    weatherTemperature.textContent =
+      Math.round((d.day.maxtemp_c + d.day.mintemp_c) / 2) + "°C";
+
+    const weatherWind = document.createElement("span");
+    weatherWind.classList.add("card__wind-speed");
+    weatherWind.textContent = Math.round(d.day.maxwind_kph) + "km/h";
+
+    const rainChance = document.createElement("span");
+    rainChance.classList.add("card__rain-chance");
+    rainChance.textContent = d.day.daily_chance_of_rain + "%";
+
+    const weatherConditions = document.createElement("p");
+    weatherConditions.classList.add("card__conditions");
+    weatherConditions.append(weatherWind);
+    weatherConditions.append(rainChance);
+
+    const weatherDescription = document.createElement("p");
+    weatherDescription.classList.add("card__description");
+    weatherDescription.textContent = d.day.condition.text;
+    [
+      weatherIcon,
+      weatherTime,
+      weatherTemperature,
+      weatherConditions,
+      weatherDescription,
+    ].forEach((el) => card.insertAdjacentElement("beforeend", el));
+    return card;
+  });
+function setForecastWeather(forecastWeatherObj) {
+  const cards = createCards(forecastWeatherObj);
+  cards.forEach((card) => cardsContainer.append(card));
+}
+function setCurrentWeather(currentWeatherObj) {
+  cardsContainer.innerHTML = "";
+  weatherConditionsEls.windSpeed.textContent = `${Math.round(
+    currentWeatherObj.wind_kph
+  )}`;
+  weatherConditionsEls.pressure.textContent = `${currentWeatherObj.pressure_mb}`;
+  weatherConditionsEls.temp.textContent = `${currentWeatherObj.temp_c}`;
+  weatherConditionsEls.cloudy.textContent = `${currentWeatherObj.cloud}`;
+  weatherConditionsEls.weatherImg.src = currentWeatherObj.condition.icon;
+  weatherConditionsEls.tempBox.textContent = `${Math.round(
+    currentWeatherObj.temp_c
+  )}`;
+  if (currentWeatherObj.precip_mm) {
+    headerOverlay.classList.add("rain-bg");
+    headerOverlay.style.opacity = `${currentWeatherObj.precip_mm / 0.8}`;
+  } else {
+    headerOverlay.classList.remove("rain-bg");
+    headerOverlay.style.opacity = "1";
+  }
 }
 const findWeatherBtn = document.querySelector(".find-weather");
 
@@ -52,13 +116,14 @@ const searchInput = document.querySelector(".search-input");
 findWeatherBtn.addEventListener("click", () => {
   const location = searchInput.value;
   searchInput.value = "";
-  setWeather(apiWeather.get_weather("current", location));
+  setWeather(apiWeather.get_weather("forecast", location, "&days=7"));
 });
-setWeather(apiWeather.get_weather("current",await getGEOlocation()))
+setWeather(
+  apiWeather.get_weather("forecast", await getGEOlocation(), "&days=7")
+);
 
 const searchEl = document.querySelector(".search-input");
 const searchBoxEls = document.querySelector(".search-option-box");
-
 
 async function typingHint(e) {
   const hints = await apiWeather.get_typying_options(e.target.value);
@@ -67,7 +132,7 @@ async function typingHint(e) {
     return;
   }
   if (searchEl.textContent) {
-    searchBoxEls.innerHTML = ""
+    searchBoxEls.innerHTML = "";
     return;
   }
   hints.slice(0, 3).forEach((location) => {
@@ -81,11 +146,11 @@ async function typingHint(e) {
   hintsEls.forEach((option) => {
     option.addEventListener("click", (e) => {
       searchEl.value = e.target.textContent;
-      console.log(e.target.textContent)
+      console.log(e.target.textContent);
       searchBoxEls.innerHTML = "";
     });
   });
 }
 
 searchEl.addEventListener("input", typingHint);
-document.body.addEventListener("click", () => searchBoxEls.innerHTML = "")
+document.body.addEventListener("click", () => (searchBoxEls.innerHTML = ""));

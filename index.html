@@ -17,8 +17,7 @@
     <!---->
   </head>
   <body>
-    <div class="wrapper">
-      <nav>
+      <nav class="wrapper">
         <img src="./img/log.svg" class="logo" alt="webside logo" />
         <h1>
           <span class="logo-front">OLO</span><span class="logo-back">cast</span
@@ -32,7 +31,7 @@
           <img src="./img/send.svg" alt="serach button image" />
         </button>
       </nav>
-      <header>
+      <header class="wrapper">
         <div class="sh"></div>
         <div class="info">
           <p class="location">______</p>
@@ -62,17 +61,23 @@
           <div class="card-header-date">Teraz</div>
           <img
             class="weather-img"
-            src="//cdn.weatherapi.com/weather/64x64/day/116.png"
           />
           <div class="temperature-card">
-            <span class="temp-card">23</span>&deg;C
+            <span class="temp-card">__</span>&deg;C
           </div>
         </div>
       </header>
-      <main>
-        <div class="day"></div>
+      <main class="wrapper">
+        <div class="cards-container">
+          <div class="card">
+            <img src="https://cdn2.iconfinder.com/data/icons/weather-365/64/weather-sun-cloud-rain-512.png" class="card__icon"></img>
+            <div class="card__time">14:00</div>
+            <div class="card__temperature">15&deg;C</div>
+            <div class="card__conditions"><span class="card__wind-speed">45km/h</span><span class="card__rain-chance">50%</span></div>
+            <div class="card__description">Slonecznie</div>
+          </div>
+          </div>
       </main>
-    </div>
     <script type="module" src="./js/main.js"></script>
     <script type="module" src="./js/api-weather.js"></script>
     <script type="module" src="./js/unit.js"></script>

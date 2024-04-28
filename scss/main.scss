@@ -6,6 +6,13 @@ svg {
   display: block;
   max-width: 100%;
 }
+img {
+  opacity: 0;
+}
+
+img[src] {
+  opacity: 1;
+}
 input,
 button,
 textarea,
@@ -125,36 +132,38 @@ header {
   .card-header {
     position: relative;
     display: flex;
-    opacity: 90%;
     scale: 1.5;
-    background-image: linear-gradient(326deg, white, rgb(219, 217, 217));
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.95),
+      rgba(219, 217, 217.95)
+    );
     flex-direction: column;
     justify-content: space-around;
     border-radius: 20px;
     min-height: 200px;
     padding: 30px 30px;
     padding-bottom: 10px;
-    background-image: linear-gradient(white, rgb(219, 217, 217));
   }
   .card-header-date {
     position: absolute;
     z-index: 2;
+    opacity: 1;
     top: 20px;
     left: 20px;
     font-size: 1.3rem;
-    padding: .5em 1em;
+    padding: 0.5em 1em;
     border-radius: 20px;
-    background-color: #3a3a3a;
+    background-image: linear-gradient(326deg, #61224e 0%, #5f0a87 74%);
+    color: white;
     font-weight: bold;
   }
   .weather-img {
     margin-top: 25px;
     z-index: 3;
-    height: 80px;
+    height: 90px;
   }
   .temperature-card {
     color: #3a3a3a;
-    margin-top: -30px;
     text-align: center;
     font-size: 3.5rem;
   }
@@ -220,5 +229,89 @@ header {
       background-color: #a4508b;
       background-image: linear-gradient(326deg, #61224e 0%, #5f0a87 74%);
     }
+  }
+}
+main {
+  margin-top: 20px;
+  .cards-container {
+    display: flex;
+    overflow-x: scroll;
+    gap: 30px;
+    padding-bottom: 15px;
+    --sb-track-color: #ffffff;
+    --sb-thumb-color: #b92391;
+    --sb-size: 23px;
+  }
+  .cards-container::-webkit-scrollbar {
+    width: var(--sb-size);
+  }
+  .cards-container::-webkit-scrollbar-thumb {
+    background: var(--sb-thumb-color);
+    border-radius: 5px;
+  }
+  .card {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    min-width: 230px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #c3cbdc;
+    background-image: linear-gradient(147deg, #c3cbdc 0%, #edf1f4 74%);
+    border-radius: 20px;
+  }
+  .card__icon {
+    height: 120px;
+  }
+  .card__time {
+    text-align: center;
+    font-size: 1.5rem;
+    background-color: #6e1da3;
+    padding: 0.25em 1em;
+    border-radius: 20px;
+    color: #ffff;
+  }
+  .card__temperature {
+    text-align: center;
+    color: #6e1da3;
+    font-size: 3rem;
+  }
+  .card__description {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .card__conditions {
+    display: flex;
+    align-items: center;
+    color: #3a3a3a;
+    font-size: 1.5rem;
+  }
+  .card__rain-chance {
+    margin-left: 40px;
+  }
+  .card__wind-speed,
+  .card__rain-chance {
+    display: flex;
+    align-items: center;
+  }
+  .card__wind-speed::before,
+  .card__rain-chance::before {
+    content: "";
+    display: block;
+    margin-right: 5px;
+    height: 30px;
+    width: 30px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #5f0a87;
+    background-image: url("../img/weather-icon/wind.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+@supports not selector(::-webkit-scrollbar) {
+  body {
+    scrollbar-color: var(--sb-thumb-color) var(--sb-track-color);
   }
 }

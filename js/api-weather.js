@@ -1,7 +1,7 @@
 'use strict';
-export async function get_weather(type, location, language = "PL") {
+export async function get_weather(type, location,other_params,language = "pl") {
   const api_data = await fetch(
-    `https://api.weatherapi.com/v1/${type}.json?q=${location}&lang=${language}}`,
+    `https://api.weatherapi.com/v1/${type}.json?q=${location}&lang=${language}${other_params}`,
     {
       headers: {
         // I know It's a brad think to put API key online (I'm just silly little coder :( ))
