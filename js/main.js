@@ -9,12 +9,12 @@ const weekDayEl = document.querySelector(".info__week-day");
 const dayMonthEl = document.querySelector(".info__day-month");
 
 const searchEl = document.querySelector(".nav__search-input");
-const searchBoxEls = document.querySelector(".search-option-box");
+const searchBoxEls = document.querySelector(".nav__browser-hints");
 const location = document.querySelector(".info__location");
 const cardsContainer = document.querySelector(".cards-container");
 
 const findWeatherBtn = document.querySelector(".nav__find-weather");
-const searchInput = document.querySelector(".search-input");
+const searchInput = document.querySelector(".nav__search-input");
 
 function showDate() {
   const currentDate = new Date();

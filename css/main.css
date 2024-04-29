@@ -69,7 +69,7 @@ nav {
 nav .nav__search-box {
   position: relative;
 }
-nav .nav__search-input {
+nav .nav__browser-hints {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -77,17 +77,14 @@ nav .nav__search-input {
   gap: 5px;
   width: 100%;
 }
-nav .nav__search-input:focus {
-  outline: none;
-}
-nav .nav__browser-hint {
+nav .search-option {
   text-align: center;
   background-color: #eeeeee;
   cursor: pointer;
   border: none;
   transition: 0.3s scale;
 }
-nav .nav__browser-hint:hover {
+nav .search-option:hover {
   scale: 1.05;
 }
 nav .nav__logo {
