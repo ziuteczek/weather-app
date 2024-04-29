@@ -183,24 +183,23 @@ header .header__sh {
 header .rain-bg {
   background-image: url("https://media2.giphy.com/media/Wmp1EOzVybWd13s5DB/giphy.gif?cid=6c09b952rpgzo51slmyo69c61l1u9qt7rl9m20q9xl1wmpv0&ep=v1_gifs_search&rid=giphy.gif&ct=s");
 }
-header .week-day {
-  text-transform: capitalize;
-  font-weight: 600;
-}
-header .day-month {
-  text-transform: capitalize;
-}
-header .date {
-  margin-bottom: 20px;
-}
-header .location {
-  color: #eeeeee;
-  font-size: 3.5rem;
-}
 header .info {
   color: #eeeeee;
   font-size: 1.5rem;
   margin-left: -20px;
+}
+header .info__week-day {
+  text-transform: capitalize;
+  font-weight: 600;
+}
+header .info__day-month {
+  text-transform: capitalize;
+}
+header .info__date {
+  margin-bottom: 20px;
+}
+header .info__location {
+  font-size: 3.5rem;
 }
 header .conditions {
   display: grid;
