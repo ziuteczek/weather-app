@@ -1,5 +1,5 @@
 "use strict";
-const unitBtn = document.querySelector(".unit-btn");
+const unitBtn = document.querySelector(".nav__unit-btn");
 let unit = "C";
 unitBtn.addEventListener("click", (e) => {
   unit = unit === "C" ? "F" : "C";

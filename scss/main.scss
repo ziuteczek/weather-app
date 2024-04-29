@@ -57,54 +57,54 @@ nav {
   align-items: center;
   height: 64px;
   font-size: 3rem;
-  .search-box {
+  .nav__search-box {
     position: relative;
   }
-  .search-option-box {
+  .nav__search-input {
     position: absolute;
     display: flex;
     flex-direction: column;
     margin-top: 5px;
     gap: 5px;
     width: 100%;
+    &:focus {
+      outline: none;
+    }
   }
-  .search-option {
+  .nav__browser-hint {
     text-align: center;
     background-color: #eeeeee;
     cursor: pointer;
     border: none;
     transition: 0.3s scale;
+    &:hover {
+      scale: 1.05;
+    }
   }
-  .search-option:hover {
-    scale: 1.05;
-  }
-  .search-input:focus {
-    outline: none;
-  }
-  .logo {
+  .nav__logo {
     justify-self: flex-end;
     margin-right: 20px;
   }
-  h1 {
+  .nav__website-title {
     font-size: 3rem;
   }
-  .logo-front {
+  .nav__logo-bold {
     color: #6e1da3;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     font-style: normal;
   }
-  .logo-back {
+  .nav__logo-thin {
     font-family: "Roboto", sans-serif;
     font-weight: 300;
     font-style: normal;
   }
-  .unit-btn {
+  .nav__unit-btn {
     all: unset;
     margin-left: 5px;
     cursor: pointer;
   }
-  .find-weather {
+  .nav__find-weather {
     cursor: pointer;
     margin-left: 10px;
     background-color: transparent;
@@ -119,6 +119,9 @@ header {
   z-index: -1;
   position: relative;
   overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   margin-top: 30px;
   background-color: #a4508b;
   background-image: linear-gradient(326deg, #61224e 0%, #5f0a87 74%);
@@ -126,9 +129,6 @@ header {
   background-position-y: 90%;
   border-radius: 25px;
   min-height: 400px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
   .card-header {
     position: relative;
     display: flex;
@@ -144,7 +144,7 @@ header {
     padding: 30px 30px;
     padding-bottom: 10px;
   }
-  .card-header-date {
+  .card-header__date {
     position: absolute;
     z-index: 2;
     opacity: 1;
@@ -157,17 +157,17 @@ header {
     color: white;
     font-weight: bold;
   }
-  .weather-img {
+  .card-header__weather-img {
     margin-top: 25px;
     z-index: 3;
     height: 90px;
   }
-  .temperature-card {
+  .card-header__temperature {
     color: #3a3a3a;
     text-align: center;
     font-size: 3.5rem;
   }
-  .sh {
+  .header__sh {
     // background-color: #000;
     background-size: cover;
     position: absolute;
@@ -175,7 +175,6 @@ header {
     width: 100%;
   }
   .rain-bg {
-    opacity: 30%;
     background-image: url("https://media2.giphy.com/media/Wmp1EOzVybWd13s5DB/giphy.gif?cid=6c09b952rpgzo51slmyo69c61l1u9qt7rl9m20q9xl1wmpv0&ep=v1_gifs_search&rid=giphy.gif&ct=s");
   }
   .week-day {
@@ -206,7 +205,7 @@ header {
     background-image: linear-gradient(326deg, white, rgb(219, 217, 217));
     grid-template-areas: "wind-speed pressure" "feelslike temp";
   }
-  .weather-condition {
+  .conditions__weather-box{
     display: grid;
     grid-template-columns: 50px 1fr;
     grid-template-rows: 1fr;
@@ -219,7 +218,7 @@ header {
       font-size: 2.5rem;
       grid-column: 2;
     }
-    .icon {
+    .conditions__icon {
       grid-column: 1;
       z-index: 2;
       height: 50px;
